@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Firas Suhail — Full Stack Developer</title>
+<meta name="description" content="Firas Suhail, Full Stack Developer. Membangun sistem POS, travel, rental, koperasi, dan website dengan Laravel, PHP, JavaScript, dan WordPress.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F6F3;
+    --surface:#FFFFFF;
+    --ink:#14161B;
+    --ink-soft:#5B6068;
+    --line:#E2E2DD;
+    --accent:#2B3B6B;
+    --accent-soft:#EDEFF6;
+    --mono-bg:#14161B;
+    --mono-ink:#EDEDE9;
+    --radius:2px;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; }
+  ::selection{ background:var(--accent); color:#fff; }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:1040px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,246,243,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 0;
+  }
+  .brand{
+    font-family:var(--mono);
+    font-size:14px;
+    letter-spacing:0.02em;
+  }
+  .brand b{ color:var(--accent); }
+  nav.links{ display:flex; gap:28px; font-size:14px; }
+  nav.links a{ text-decoration:none; color:var(--ink-soft); transition:color .15s ease; }
+  nav.links a:hover{ color:var(--ink); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:96px 0 88px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:56px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--accent);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    display:flex; align-items:center; gap:8px;
+    margin-bottom:20px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--accent);
+    border-radius:50%;
+    display:inline-block;
+  }
+  h1{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(38px, 5.4vw, 60px);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+    margin:0 0 22px;
+  }
+  h1 span{ color:var(--accent); }
+  .lede{
+    font-size:17.5px;
+    color:var(--ink-soft);
+    max-width:46ch;
+    margin:0 0 34px;
+  }
+  .hero-cta{
+    display:flex; gap:14px; flex-wrap:wrap;
+  }
+  .btn{
+    font-family:var(--body);
+    font-size:14.5px;
+    font-weight:500;
+    padding:12px 22px;
+    border-radius:var(--radius);
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid var(--ink);
+    transition:transform .15s ease, background .15s ease, color .15s ease;
+  }
+  .btn-solid{ background:var(--ink); color:#fff; }
+  .btn-solid:hover{ background:var(--accent); border-color:var(--accent); transform:translateY(-1px); }
+  .btn-ghost{ background:transparent; color:var(--ink); }
+  .btn-ghost:hover{ background:var(--ink); color:#fff; transform:translateY(-1px); }
+
+  /* signature: layered stack diagram */
+  .stack-art{
+    display:flex; flex-direction:column; gap:10px;
+    font-family:var(--mono);
+  }
+  .layer{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px 18px;
+    display:flex; align-items:center; justify-content:space-between;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .layer b{ font-family:var(--display); font-size:14px; color:var(--ink); font-weight:600; }
+  .layer.core{
+    border-color:var(--accent);
+    background:var(--accent-soft);
+  }
+  .layer.core b{ color:var(--accent); }
+  .stack-connector{
+    width:1px; height:10px; background:var(--line); margin-left:22px;
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:76px 0; border-bottom:1px solid var(--line); }
+  .sec-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin-bottom:40px; gap:24px; flex-wrap:wrap;
+  }
+  .sec-label{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+  }
+  h2{
+    font-family:var(--display);
+    font-size:clamp(24px,3vw,32px);
+    font-weight:600;
+    margin:6px 0 0;
+    letter-spacing:-0.01em;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-body{
+    font-size:16px;
+    color:var(--ink-soft);
+    max-width:66ch;
+  }
+  .about-body strong{ color:var(--ink); font-weight:600; }
+
+  .stack-chips{
+    margin-top:36px;
+    display:flex; flex-direction:column; gap:18px;
+  }
+  .chip-row{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+  .chip-row .row-label{
+    font-family:var(--mono); font-size:12px; color:var(--ink-soft);
+    width:96px; flex-shrink:0;
+  }
+  .chip{
+    font-family:var(--mono);
+    font-size:13px;
+    padding:7px 13px;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:var(--surface);
+    color:var(--ink);
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .project{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:40px;
+    padding:40px 0;
+    border-top:1px solid var(--line);
+    align-items:center;
+  }
+  .project:first-of-type{ border-top:none; padding-top:0; }
+
+  .shot-frame{
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    background:var(--surface);
+    box-shadow:0 1px 2px rgba(20,22,27,0.03);
+  }
+  .shot-chrome{
+    display:flex; gap:6px;
+    padding:9px 12px;
+    border-bottom:1px solid var(--line);
+    background:#FAFAF8;
+  }
+  .dot{ width:8px; height:8px; border-radius:50%; background:#DEDED8; }
+  .shot-placeholder{
+    aspect-ratio:16/10;
+    display:flex; align-items:center; justify-content:center;
+    background:
+      repeating-linear-gradient(135deg, #FAFAF8, #FAFAF8 10px, #F2F2EE 10px, #F2F2EE 11px);
+    color:var(--ink-soft);
+    font-family:var(--mono);
+    font-size:12px;
+    text-align:center;
+    padding:20px;
+  }
+  .shot-placeholder small{ display:block; margin-top:6px; color:#9A9F96; }
+
+  .p-id{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--accent);
+    margin-bottom:10px;
+    letter-spacing:0.06em;
+  }
+  .p-title{
+    font-family:var(--display);
+    font-size:22px;
+    font-weight:600;
+    margin:0 0 12px;
+  }
+  .p-desc{
+    color:var(--ink-soft);
+    font-size:15px;
+    margin:0 0 16px;
+    max-width:48ch;
+  }
+  .p-tags{ display:flex; gap:8px; flex-wrap:wrap; }
+  .tag{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    border:1px solid var(--line);
+    padding:4px 9px;
+    border-radius:var(--radius);
+  }
+
+  @media (max-width: 760px){
+    .project{ grid-template-columns:1fr; }
+    .project .shot-frame{ order:2; }
+    .hero-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact{ border-bottom:none; padding-bottom:96px; }
+  .contact-inner{
+    background:var(--ink);
+    color:#EDEDE9;
+    border-radius:6px;
+    padding:56px 44px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:32px;
+    flex-wrap:wrap;
+  }
+  .contact-inner h2{ color:#fff; margin:0 0 10px; }
+  .contact-inner p{ color:#B7BAC0; margin:0; font-size:15px; max-width:40ch; }
+  .contact-links{ display:flex; gap:12px; flex-wrap:wrap; }
+  .contact-links .btn-solid{ background:#fff; color:var(--ink); border-color:#fff; }
+  .contact-links .btn-solid:hover{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .contact-links .btn-ghost{ border-color:#4A4E57; color:#EDEDE9; }
+  .contact-links .btn-ghost:hover{ background:#EDEDE9; color:var(--ink); }
+
+  footer{
+    text-align:center;
+    padding:28px 0 40px;
+    font-family:var(--mono);
+    font-size:12px;
+    color:#9A9F96;
+  }
+
+  /* scroll reveal */
+  .reveal{ opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand">firas<b>.</b>dev</div>
+    <nav class="links">
+      <a href="#tentang">Tentang</a>
+      <a href="#proyek">Proyek</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Full Stack Developer</div>
+      <h1>Firas Suhail membangun<br><span>sistem</span> yang dipakai bisnis<br>setiap hari.</h1>
+      <p class="lede">Dari kasir toko sampai keanggotaan koperasi — saya menerjemahkan proses bisnis nyata jadi aplikasi web yang stabil, dengan Laravel, PHP, JavaScript, dan WordPress.</p>
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="#proyek">Lihat Proyek</a>
+        <a class="btn btn-ghost" href="mailto:firassuhail30@gmail.com">Hubungi Saya</a>
+      </div>
+    </div>
+    <div class="stack-art" aria-hidden="true">
+      <div class="layer"><b>Interface</b><span>JavaScript</span></div>
+      <div class="stack-connector"></div>
+      <div class="layer core"><b>Application</b><span>Laravel / PHP</span></div>
+      <div class="stack-connector"></div>
+      <div class="layer"><b>Content</b><span>WordPress</span></div>
+      <div class="stack-connector"></div>
+      <div class="layer"><b>Data</b><span>MySQL</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="tentang">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-label">01 — Tentang</div>
+        <h2>Fokus di sistem, bukan sekadar tampilan.</h2>
+      </div>
+    </div>
+    <p class="about-body reveal">Saya <strong>Firas Suhail</strong>, Full Stack Developer yang terbiasa membangun aplikasi bisnis dari nol — mulai dari rancangan basis data, alur transaksi, sampai antarmuka yang gampang dipakai staf lapangan. Sebagian besar kerja saya menyentuh operasional harian: kasir, penyewaan, perjalanan, dan keanggotaan koperasi. Untuk proyek yang butuh publikasi konten dan tampilan cepat jadi, saya juga mengandalkan WordPress.</p>
+
+    <div class="stack-chips reveal">
+      <div class="chip-row">
+        <span class="row-label">Backend</span>
+        <span class="chip">Laravel</span>
+        <span class="chip">PHP</span>
+        <span class="chip">MySQL</span>
+        <span class="chip">REST API</span>
+      </div>
+      <div class="chip-row">
+        <span class="row-label">Frontend</span>
+        <span class="chip">JavaScript</span>
+        <span class="chip">HTML / CSS</span>
+      </div>
+      <div class="chip-row">
+        <span class="row-label">CMS</span>
+        <span class="chip">WordPress</span>
+        <span class="chip">Custom Theme</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="proyek">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="sec-label">02 — Proyek</div>
+        <h2>Sistem yang sudah saya bangun.</h2>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="shot-frame">
+        <div class="shot-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="shot-placeholder">Screenshot POS App<br><small>ganti gambar di src="images/pos-app.jpg"</small></div>
+      </div>
+      <div>
+        <div class="p-id">SYS-01 / POS Application</div>
+        <h3 class="p-title">POS App (SaaS)</h3>
+        <p class="p-desc">Sistem kasir dan manajemen toko berbasis SaaS untuk multi-outlet — transaksi cepat, stok real-time, dan laporan penjualan dalam satu dashboard.</p>
+        <div class="p-tags">
+          <span class="tag">Laravel</span><span class="tag">MySQL</span><span class="tag">JavaScript</span><span class="tag">REST API</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="shot-frame">
+        <div class="shot-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="shot-placeholder">Screenshot Travel App<br><small>ganti gambar di src="images/travel-app.jpg"</small></div>
+      </div>
+      <div>
+        <div class="p-id">SYS-02 / Travel Booking</div>
+        <h3 class="p-title">Travel App</h3>
+        <p class="p-desc">Platform pemesanan perjalanan, dari pencarian paket sampai konfirmasi booking, dirancang untuk pengalaman yang mulus di mobile maupun desktop.</p>
+        <div class="p-tags">
+          <span class="tag">Laravel</span><span class="tag">JavaScript</span><span class="tag">Payment Gateway</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="shot-frame">
+        <div class="shot-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="shot-placeholder">Screenshot Rental App<br><small>ganti gambar di src="images/rental-app.jpg"</small></div>
+      </div>
+      <div>
+        <div class="p-id">SYS-03 / Rental Management</div>
+        <h3 class="p-title">Rental App</h3>
+        <p class="p-desc">Sistem manajemen penyewaan — pelacakan unit, jadwal sewa, dan pembayaran, dirapikan dalam satu dashboard yang mudah dipantau.</p>
+        <div class="p-tags">
+          <span class="tag">Laravel</span><span class="tag">MySQL</span><span class="tag">JavaScript</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="shot-frame">
+        <div class="shot-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="shot-placeholder">Screenshot Koperasi Website<br><small>ganti gambar di src="images/koperasi.jpg"</small></div>
+      </div>
+      <div>
+        <div class="p-id">SYS-04 / Cooperative Platform</div>
+        <h3 class="p-title">Koperasi Website</h3>
+        <p class="p-desc">Platform digital untuk koperasi — pendataan anggota, simpan pinjam, dan laporan keuangan yang transparan dan mudah diakses.</p>
+        <div class="p-tags">
+          <span class="tag">Laravel</span><span class="tag">PHP</span><span class="tag">MySQL</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="shot-frame">
+        <div class="shot-chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="shot-placeholder">Screenshot Website Altaraven<br><small>ganti gambar di src="images/altaraven.jpg"</small></div>
+      </div>
+      <div>
+        <div class="p-id">SYS-05 / Band Website</div>
+        <h3 class="p-title">Official Website — Altaraven</h3>
+        <p class="p-desc">Website resmi band Altaraven: profil, diskografi, dan jadwal tur, dibangun dengan tampilan yang sesuai karakter band.</p>
+        <div class="p-tags">
+          <span class="tag">WordPress</span><span class="tag">Custom Theme</span><span class="tag">JavaScript</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="kontak" class="contact">
+  <div class="wrap">
+    <div class="contact-inner reveal">
+      <div>
+        <h2>Punya proyek yang perlu sistem serupa?</h2>
+        <p>Ceritakan kebutuhan bisnis kamu — saya bantu rancang jadi aplikasi yang jalan.</p>
+      </div>
+      <div class="contact-links">
+        <a class="btn btn-solid" href="mailto:firassuhail30@gmail.com">firassuhail30@gmail.com</a>
+        <a class="btn btn-ghost" href="https://github.com/firassuhail1" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> Firas Suhail — dibangun dengan HTML, CSS &amp; JavaScript
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
